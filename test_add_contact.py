@@ -4,7 +4,8 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest
-from contact import Contact
+from addContact import ContactAdd
+
 
 class AddContact(unittest.TestCase):
     def setUp(self):
@@ -17,12 +18,7 @@ class AddContact(unittest.TestCase):
         self.open_site(wd)
         self.login(wd, "admin", "secret")
         self.open_created_contact(wd)
-        self.create_new_contact(wd, Contact(firstname="Bdftyj", middlename="Petrov", lastname="Petrov", nickname="Petr",
-                           title="title test", company="cjmpany222", address="Svobod,1", home="348758937",
-                           mobile="234234324", work="34534534", fax="345345345", email="dfgdf@dfgdf.er",
-                           email2="dfgdfg@fghfg.er", email3="dfgdf@dfgd.er", homepage="jhjhj.re", bday="11",
-                           bmonth="September", byear="1990", aday="11", amonth="March", ayear="2000",
-                           address2="flhrtccx", phone2="Ferabd,2", notes="ytn"))
+        self.create_new_contact(wd, ContactAdd("Bdftyj", "Petrov", "Petrov2", "Petr", "title test", "cjmpany222", "Svobod1", "348758937", "234234324", "34534534", "345345345", "dfgdf@dfgdf.er", "dfgdfg@fghfg.er", "dfgdf@dfgd.er", "jhjhj.re", "11", "September", "1990", "11", "March", "2000", "flhrtccx", "Ferabd,2", "ytn"))
         self.open_site(wd)
         self.logout(wd)
 
