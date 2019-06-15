@@ -9,15 +9,6 @@ class TestAddGroup(unittest.TestCase):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
-    def test_add_group(self):
-        wd = self.wd
-        self.open_home_page(wd)
-        self.login(wd, username="admin", password="secret")
-        self.open_group_page(wd)
-        self.create_group(wd, name="new", header="new", footer="new")
-        self.return_to_group_page(wd)
-        self.logout(wd)
-
     def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
 
@@ -55,6 +46,15 @@ class TestAddGroup(unittest.TestCase):
 
     def open_home_page(self, wd):
         wd.get("http://localhost/addressbook/")
+
+    def test_add_group(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd, "admin", "secret")
+        self.open_group_page(wd)
+        self.create_group(wd, "new", "new", "new")
+        self.return_to_group_page(wd)
+        self.logout(wd)
 
     def is_element_present(self, how, what):
         try: self.wd.find_element(by=how, value=what)
