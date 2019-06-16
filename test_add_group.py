@@ -17,6 +17,7 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element_by_link_text("groups").click()
 
     def create_group(self, wd, group):
+        self.open_group_page(wd)
         # init group creation
         wd.find_element_by_name("new").click()
         # fill group form
@@ -31,11 +32,13 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element_by_name("group_footer").send_keys(group.footer)
         # submit group creation
         wd.find_element_by_name("submit").click()
+        self.return_to_group_page(wd)
 
     def open_group_page(self, wd):
         wd.find_element_by_link_text("groups").click()
 
     def login(self, wd, user_name, password):
+        self.open_home_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("%s" % user_name)
@@ -50,20 +53,14 @@ class TestAddGroup(unittest.TestCase):
 
     def test_add_group(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, "admin", "secret")
-        self.open_group_page(wd)
         self.create_group(wd, Group("new", "new", "new"))
-        self.return_to_group_page(wd)
         self.logout(wd)
 
     def test_add_group_empty(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, "admin", "secret")
-        self.open_group_page(wd)
         self.create_group(wd, Group("", "", ""))
-        self.return_to_group_page(wd)
         self.logout(wd)
 
     def is_element_present(self, how, what):

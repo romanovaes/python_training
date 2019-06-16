@@ -15,11 +15,8 @@ class AddContact(unittest.TestCase):
 
     def test_add_contact(self):
         wd = self.wd
-        self.open_site(wd)
         self.login(wd, "admin", "secret")
-        self.open_created_contact(wd)
         self.create_new_contact(wd, ContactAdd("Bdftyj", "Petrov", "Petrov2", "Petr", "title test", "cjmpany222", "Svobod1", "348758937", "234234324", "34534534", "345345345", "dfgdf@dfgdf.er", "dfgdfg@fghfg.er", "dfgdf@dfgd.er", "jhjhj.re", "11", "September", "1990", "11", "March", "2000", "flhrtccx", "Ferabd,2", "ytn"))
-        self.open_site(wd)
         self.logout(wd)
 
     def open_created_contact(self, wd):
@@ -29,6 +26,7 @@ class AddContact(unittest.TestCase):
         wd.find_element_by_link_text("Logout").click()
 
     def create_new_contact(self, wd, contact):
+        self.open_created_contact(wd)
         #fill form
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -39,9 +37,9 @@ class AddContact(unittest.TestCase):
         wd.find_element_by_name("lastname").send_keys(contact.lastname)
         wd.find_element_by_name("nickname").clear()
         wd.find_element_by_name("nickname").send_keys(contact.nickname)
-        # wd.find_element_by_name("photo").click()
-        # wd.find_element_by_name("photo").clear()
-        # wd.find_element_by_name("photo").send_keys("C:\\fakepath\\Tulips.jpg")
+        #wd.find_element_by_name("photo").click()
+        #wd.find_element_by_name("photo").clear()
+        #wd.find_element_by_name("photo").send_keys("C:\\Users\\Laptop\\PycharmProjects\\python_training\\Lighthouse.jpg")
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
         wd.find_element_by_name("title").send_keys(contact.title)
@@ -111,8 +109,10 @@ class AddContact(unittest.TestCase):
         #enter contact
         wd.find_element_by_xpath(
             "(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]").click()
+        self.open_site(wd)
 
     def login(self, wd, user_name, password):
+        self.open_site(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("%s" % user_name)
