@@ -21,3 +21,25 @@ class SessionHelper:
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys("%s" % password)
         wd.find_element_by_xpath("//input[@value='Login']").click()
+
+    def is_logged_in_as(self,user_name):
+        wd = self.app.wd
+        return wd.find_element_by_xpath("/html/body/div/div[1]/form/b").text == "("+user_name+")"
+
+    def ensue_logout(self):
+        wd = self.app.wd
+        if self.is_logged_in():
+            self.logout()
+
+    def is_logged_in(self):
+        wd = self.app.wd
+        return len(wd.find_elements_by_link_text("Logout")) > 0
+
+    def ensue_login(self, user_name, password):
+        wd = self.app.wd
+        if self.is_logged_in():
+            if self.is_logged_in_as(user_name):
+                return
+            else:
+                self.logout()
+        self.login(user_name, password)
