@@ -9,7 +9,7 @@ def test_add_group(app):
         new_group=app.group.get_group_list()
         assert len(old_group)+1 == len(new_group)
         old_group.append(group)
-        sorted(old_group, key=Group.id_or_max)==sorted(new_group, key=Group.id_or_max)
+        assert sorted(old_group, key=Group.id_or_max)==sorted(new_group, key=Group.id_or_max)
 
 
 def test_add_group_empty(app):
@@ -19,7 +19,7 @@ def test_add_group_empty(app):
         new_group=app.group.get_group_list()
         assert len(old_group)+1 == len(new_group)
         old_group.append(group)
-        sorted(old_group, key=Group.id_or_max)==sorted(new_group, key=Group.id_or_max)
+        assert sorted(old_group, key=Group.id_or_max)==sorted(new_group, key=Group.id_or_max)
 
 
 
