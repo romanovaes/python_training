@@ -97,8 +97,8 @@ class ContactHelper:
         self.app.open_home_page()
         contact=[]
         for element in wd.find_elements_by_css_selector('tr[name="entry"]'):
-            text=element.find_element_by_css_selector("td:nth-child(2)")
-            text1=element.find_element_by_css_selector('td:nth-child(3)')
+            text=element.find_element_by_css_selector("td:nth-child(2)").text
+            text1=element.find_element_by_css_selector("td:nth-child(3)").text
             id=element.find_element_by_name("selected[]").get_attribute('value')
             contact.append(ContactAdd(firstname=text, lastname=text1, id=id))
         return contact

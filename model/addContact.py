@@ -31,7 +31,7 @@ class ContactAdd:
 
 
     def __repr__(self):
-        return '%s:%s:%s' % (self.id, self.firstname, self.lastname)
+        return '%s:%s:%s' %(self.firstname, self.lastname, self.id)
 
     def __eq__(self, other):
         return self.firstname==other.firstname and self.lastname==other.lastname and (self.id==other.id or self.id is None or other.id is None)
