@@ -36,17 +36,26 @@ class GroupHelper:
             wd.find_element_by_name(field_name).send_keys(text)
 
     def delete_first_group(self):
+       self.delete_group_by_index(0)
+
+    def delete_group_by_index(self, index):
         wd = self.app.wd
         self.open_group_page()
-        self.select_first_group()
+        self.select_group_by_index(index)
         #delete group
         wd.find_element_by_name("delete").click()
         self.return_to_group_page()
+        self.group_cache=None
 
     def select_first_group(self):
         wd = self.app.wd
         # select first group
         wd.find_element_by_name("selected[]").click()
+
+    def select_group_by_index(self,index):
+        wd = self.app.wd
+        # select first group
+        wd.find_elements_by_name("selected[]")[index].click()
 
     def open_group_page(self):
         wd = self.app.wd
@@ -54,10 +63,10 @@ class GroupHelper:
             wd.find_element_by_link_text("groups").click()
 
 
-    def modify_first_group(self, new_group_data):
+    def modify_group_by_index(self,index, new_group_data):
         wd=self.app.wd
         self.open_group_page()
-        self.select_first_group()
+        self.select_group_by_index(index)
         #open modification group
         wd.find_element_by_name("edit").click()
         #fill group form
@@ -65,6 +74,9 @@ class GroupHelper:
         #submit modification
         wd.find_element_by_name("update").click()
         self.return_to_group_page()
+
+    def modify_first_group(self, new_group_data):
+        self.modify_group_by_index(0, new_group_data)
 
     def count(self):
         wd=self.app.wd
@@ -83,3 +95,4 @@ class GroupHelper:
               id=element.find_element_by_name("selected[]").get_attribute('value')
               self.group_cache.append(Group(name=text, id=id))
         return list(self.group_cache)
+
