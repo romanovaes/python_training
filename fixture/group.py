@@ -74,6 +74,7 @@ class GroupHelper:
         #submit modification
         wd.find_element_by_name("update").click()
         self.return_to_group_page()
+        self.group_cache=None
 
     def modify_first_group(self, new_group_data):
         self.modify_group_by_index(0, new_group_data)
