@@ -1,5 +1,6 @@
 from model.addContact import ContactAdd
 from selenium.webdriver.support.ui import Select
+import re
 
 class ContactHelper:
 
@@ -141,5 +142,25 @@ class ContactHelper:
         return ContactAdd(firstname=firstname,lastname=lastname, id=id,
                        home=homephone,  work=workphone, mobile=mobilephone, phone2=secondphone,
                           address=address, email=email, email2=email2, email3=email3)
+
+    def get_contact_list_from_view_page(self, index):
+        wd = self.app.wd
+        self.open_contact_view_page_by_index(index)
+        text=wd.find_element_by_id("content").text
+        homephone=re.search("H: (.*)", text).group(1)
+        workphone=re.search("W: (.*)", text).group(1)
+        mobilephone=re.search("M: (.*)", text).group(1)
+        secondphone=re.search("P: (.*)", text).group(1)
+        return ContactAdd(home=homephone,  work=workphone, mobile=mobilephone, phone2=secondphone)
+
+
+    def open_contact_view_page_by_index(self, index):
+        wd = self.app.wd
+        self.app.open_home_page()
+        row=wd.find_elements_by_name("entry")[index]
+        cell=row.find_elements_by_tag_name("td")[6]
+        cell.find_element_by_tag_name("a").click()
+
+
 
 
