@@ -114,7 +114,7 @@ class ContactHelper:
               id=element.find_element_by_name("selected[]").get_attribute('value')
               all_phones=element.find_element_by_css_selector("td:nth-child(6)").text.splitlines()
               self.contact_cache.append(ContactAdd(firstname=text1, lastname=text, id=id,
-                                                   home=all_phones[0], work=all_phones[1], mobile=all_phones[2]))
+                                                   home=all_phones[0], work=all_phones[2], mobile=all_phones[1], phone2=all_phones[3]))
         return list(self.contact_cache)
 
     def open_contact_to_edit_by_index(self, index):
