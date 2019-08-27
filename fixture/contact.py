@@ -113,10 +113,11 @@ class ContactHelper:
               text=element.find_element_by_css_selector("td:nth-child(2)").text
               text1=element.find_element_by_css_selector("td:nth-child(3)").text
               id=element.find_element_by_name("selected[]").get_attribute('value')
+              address=element.find_element_by_css_selector("td:nth-child(4)").text
               all_phones=element.find_element_by_css_selector("td:nth-child(6)").text
               all_email=element.find_element_by_css_selector("td:nth-child(5)").text
-              self.contact_cache.append(ContactAdd(firstname=text1, lastname=text, id=id, all_phones_from_home_page=all_phones,
-                                                   all_email_from_home_page=all_email))
+              self.contact_cache.append(ContactAdd(firstname=text1, lastname=text, id=id, address=address,
+                                                   all_phones_from_home_page=all_phones, all_email_from_home_page=all_email))
         return list(self.contact_cache)
 
     def open_contact_to_edit_by_index(self, index):
