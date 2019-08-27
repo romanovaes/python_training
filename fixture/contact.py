@@ -113,9 +113,8 @@ class ContactHelper:
               text=element.find_element_by_css_selector("td:nth-child(2)").text
               text1=element.find_element_by_css_selector("td:nth-child(3)").text
               id=element.find_element_by_name("selected[]").get_attribute('value')
-              all_phones=element.find_element_by_css_selector("td:nth-child(6)").text.splitlines()
-              self.contact_cache.append(ContactAdd(firstname=text1, lastname=text, id=id,
-                                                   home=all_phones[0], work=all_phones[2], mobile=all_phones[1], phone2=all_phones[3]))
+              all_phones=element.find_element_by_css_selector("td:nth-child(6)").text
+              self.contact_cache.append(ContactAdd(firstname=text1, lastname=text, id=id, all_phones_from_home_page=all_phones))
         return list(self.contact_cache)
 
     def open_contact_to_edit_by_index(self, index):
@@ -160,6 +159,8 @@ class ContactHelper:
         row=wd.find_elements_by_name("entry")[index]
         cell=row.find_elements_by_tag_name("td")[6]
         cell.find_element_by_tag_name("a").click()
+
+
 
 
 
