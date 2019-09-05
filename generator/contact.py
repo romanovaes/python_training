@@ -13,7 +13,7 @@ except getopt.GetoptError as err:
     getopt.usage()
     sys.exite(2)
 
-n=5
+n=2
 f="data/contact.json"
 
 
