@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from builtins import *
 from model.group import Group
 
 #@pytest.mark.parametrize("group", testdata, ids=[repr(x) for x in testdata])

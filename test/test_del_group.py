@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from builtins import len
 from random import randrange
 from model.group import Group
 

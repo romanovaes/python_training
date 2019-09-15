@@ -1,4 +1,6 @@
+from builtins import int
 from sys import maxsize
+
 
 
 class Group:

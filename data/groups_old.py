@@ -1,6 +1,7 @@
 from model.group import Group
 import random
 import string
+from builtins import *
 
 
 def random_string(prefix, maxlen):

@@ -3,11 +3,15 @@ from model.addContact import ContactAdd
 import pytest
 import random
 import string
+import time
+from builtins import *
+
 
 #@pytest.mark.parametrize("contact", testdata, ids=[repr(x) for x in testdata])
 def test_add_contact(app, json_contact):
     contact=json_contact
     old_contact=app.contact.get_contact_list()
+    time.sleep(2)
     app.contact.create(contact)
     l=app.contact.count()
     assert len(old_contact)+1 == l
