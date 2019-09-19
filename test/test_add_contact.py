@@ -11,7 +11,6 @@ from builtins import *
 def test_add_contact(app, json_contact):
     contact=json_contact
     old_contact=app.contact.get_contact_list()
-    time.sleep(2)
     app.contact.create(contact)
     l=app.contact.count()
     assert len(old_contact)+1 == l
