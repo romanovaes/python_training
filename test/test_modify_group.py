@@ -1,26 +1,22 @@
 # -*- coding: utf-8 -*-
 from random import randrange
 from model.group import Group
+import random
 
-
-def test_modify_group_name(app):
+def test_modify_group_name(app, db, check_ui):
         if app.group.count()==0:
                 app.group.create(Group(name="Тест модификации name"))
-        old_group=app.group.get_group_list()
-        index=randrange(len(old_group))
-        group=Group(name="new name1")
-        group.id=old_group[index].id
-        app.group.modify_group_by_index(index, group)
-        new_group=app.group.get_group_list()
-        assert len(old_group) == len(new_group)
-        old_group[index]=group
-        sorted(old_group, key=Group.id_or_max)==sorted(new_group, key=Group.id_or_max)
+        old_groups=db.get_group_list()
+        group_old=random.choice(old_groups)
+        group=Group(name="name22", header="", footer="")
+        group.id=group_old.id
+        app.group.modify_group_by_id(group.id, group)
+        new_group=db.get_group_list()
+        assert len(old_groups) == len(new_group)
+        old_groups[old_groups.index(group_old)]=group
+        assert sorted(old_groups, key=Group.id_or_max)==sorted(new_group, key=Group.id_or_max)
+        if check_ui:
+          assert sorted(map(app.group.clean_gap_from_group, new_group), key=Group.id_or_max) == sorted(app.group.get_group_list(), key=Group.id_or_max)
 
 
-#def test_modify_group_header(app):
-        #if app.group.count()==0:
-               # app.group.create(Group(name="Тест модификации header"))
-       # old_group=app.group.get_group_list()
-       # app.group.modify_first_group(Group(header="new header"))
-       # new_group=app.group.get_group_list()
-       # assert len(old_group) == len(new_group)
+
