@@ -26,6 +26,8 @@ class ORMFixture:
         groups = Set(lambda: ORMFixture.ORMGroup, table="address_in_groups", column='group_id', reverse='contacts', lazy=True)
 
 
+
+
     def __init__(self, host, name, user, password):
         self.db.bind('mysql', host=host, db=name, user=user, password=password)
         self.db.generate_mapping()
@@ -46,6 +48,7 @@ class ORMFixture:
     def get_group_list(self):
         return self.convert_group_to_model(select(g for g in ORMFixture.ORMGroup))
 
+
     @db_session
     def get_contact_list(self):
         return self.convert_contact_to_model(select(c for c in ORMFixture.ORMContact if c.deprecated is None))
@@ -60,6 +63,12 @@ class ORMFixture:
         orm_group = list(select(g for g in ORMFixture.ORMGroup if g.id == group.id))[0]
         return self.convert_contact_to_model(
             select(c for c in ORMFixture.ORMContact if c.deprecated is None and orm_group not in c.groups))
+
+    @db_session
+    def get_group_list_on_id(self, id_group):
+        return self.convert_contact_to_model(select(c for c in ORMFixture.ORMContact if c.id==id_group))
+
+
 
 
 

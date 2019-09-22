@@ -35,5 +35,17 @@ class DBFixture:
             cursor.close()
             return list
 
+    def get_group_id_with_contact(self):
+        list = []
+        cursor = self.connection.cursor()
+        try:
+            cursor.execute("select group_id from address_in_groups")
+            for row in cursor:
+                (group_id) = row
+                list.append(group_id)
+        finally:
+            cursor.close()
+            return list
+
     def destroy(self):
         self.connection.close()
