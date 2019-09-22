@@ -29,7 +29,7 @@ class DBFixture:
         try:
             cursor.execute("select id, firstname, lastname from addressbook where deprecated='0000-00-00 00:00:00'")
             for row in cursor:
-                (id,firstname,lastname) = row
+                (id, firstname, lastname) = row
                 list.append(ContactAdd(id=str(id), firstname=firstname, lastname=lastname))
         finally:
             cursor.close()

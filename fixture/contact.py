@@ -23,8 +23,7 @@ class ContactHelper:
     def delete_contact_by_index(self, index):
         wd = self.app.wd
         self.app.open_home_page()
-        #select first contact
-        wd.find_elements_by_name("selected[]")[index].click()
+        wd.find_element_by_css_selector("input[value='%s']" % index).click()
         #delete contact
         wd.find_element_by_xpath("/html/body/div/div[4]/form[2]/div[2]/input").click()
         #alert delete
@@ -49,6 +48,9 @@ class ContactHelper:
 
     def edit_first_contact(self, contact):
         self.edit_contact_by_index(contact,0)
+
+    def clean_gap_from_contact(self,contact):
+        return ContactAdd(id=contact.id, firstname=contact.firstname.strip(), lastname=contact.lastname.strip())
 
 
     def fill_contact(self, contact):
