@@ -2,6 +2,7 @@ from selenium import webdriver
 from fixture.session import SessionHelper
 from fixture.group import GroupHelper
 from fixture.contact import ContactHelper
+from fixture.commonDef import ContactGroupHelper
 
 class Application:
 
@@ -19,6 +20,7 @@ class Application:
         self.group=GroupHelper(self)
         self.contact=ContactHelper(self)
         self.baseUrl=baseUrl
+        self.commonDef=ContactGroupHelper(self)
 
     def is_valid(self):
         try:
