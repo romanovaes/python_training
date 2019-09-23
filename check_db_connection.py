@@ -1,3 +1,5 @@
+import random
+
 import pymysql.cursors
 from fixture.orm import ORMFixture
 from model.group import Group
@@ -13,8 +15,17 @@ db=ORMFixture(host="127.0.0.1", name="addressbook", user="root", password="")
 #finally:
     #connection.close()
 
+list = []
+
 try:
-   l = db.get_contacts_in_group_on_id_group(2)
-   print(l)
+   l=db.get_group_list_on_id(4)
+   cursor = connection.cursor()
+   cursor.execute("select group_id from address_in_groups")
+   for row in cursor:
+                (group_id) = row
+                list.append(group_id)
+   id_group = random.choice(list)
+   print(l[0])
+   print(str(id_group[0]))
 finally:
-   pass
+    connection.close()

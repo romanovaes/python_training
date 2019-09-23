@@ -1,4 +1,4 @@
-from datetime import time
+import time
 
 from model.addContact import ContactAdd
 from selenium.webdriver.support.ui import Select
@@ -23,6 +23,6 @@ class ContactGroupHelper:
         wd = self.app.wd
         wd.find_element_by_name('group').click()
         wd.find_element_by_css_selector('select[name="group"] > option[value="%s"]' % groupId).click()
-        time.sleep(2)
+        #time.sleep(1)
         wd.find_element_by_css_selector("input[value='%s']" % contactIndex).click()
         wd.find_element_by_name('remove').click()
