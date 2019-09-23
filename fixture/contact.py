@@ -32,6 +32,7 @@ class ContactHelper:
         self.app.open_home_page()
         self.contact_cache=None
 
+
     def delete_first_contact(self):
         self.delete_contact_by_index(0)
 
@@ -45,6 +46,17 @@ class ContactHelper:
         wd.find_element_by_name("update").click()
         self.app.open_home_page()
         self.contact_cache=None
+
+    def edit_contact_by_id(self, contact, id):
+        wd = self.app.wd
+        self.app.open_home_page()
+        # open  contact to edit
+        wd.get(wd.current_url+'/edit.php?id=%s' % id)
+        self.fill_contact(contact)
+        # safe edition to contact
+        wd.find_element_by_name("update").click()
+        self.app.open_home_page()
+        self.contact_cache = None
 
     def edit_first_contact(self, contact):
         self.edit_contact_by_index(contact,0)

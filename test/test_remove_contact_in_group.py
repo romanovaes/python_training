@@ -14,8 +14,9 @@ def test_remove_contact_in_group(app, db, orm):
         print("Необходимо выполнить тест добавления контакта в группу")
 
     id_group=random.choice(db.get_group_id_with_contact())
-    group=orm.get_group_list_on_id(str(id_group))
-    list_contacts_old = orm.get_contacts_in_group(group)
+    groups=orm.get_group_list_on_id(str(id_group))
+    group=groups[0]
+    list_contacts_old = orm.get_contacts_in_group(groups[0])
     contact = random.choice(db.list_contacts_old())
     app.commonDef.remove_contact_in_group(contactIndex=contact.id, groupId=id_group)
     list_contacts_new=orm.get_contacts_in_group(group)
