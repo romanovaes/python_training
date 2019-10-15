@@ -1,0 +1,71 @@
+Traceback (most recent call last):
+  File "C:\Python\Python37\lib\runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "C:\Python\Python37\lib\runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\Lynakat\PycharmProjects\python_training\env\Scripts\pytest.exe\
+__main__.py", line 9, in <module>
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\_
+pytest\config\__init__.py", line 59, in main
+    config = _prepareconfig(args, plugins)
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\_
+pytest\config\__init__.py", line 209, in _prepareconfig
+    pluginmanager=pluginmanager, args=args
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\p
+luggy\hooks.py", line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\p
+luggy\manager.py", line 92, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\p
+luggy\manager.py", line 86, in <lambda>
+    firstresult=hook.spec.opts.get("firstresult") if hook.spec else False,
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\p
+luggy\callers.py", line 203, in _multicall
+    gen.send(outcome)
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\_
+pytest\helpconfig.py", line 89, in pytest_cmdline_parse
+    config = outcome.get_result()
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\p
+luggy\callers.py", line 80, in get_result
+    raise ex[1].with_traceback(ex[2])
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\p
+luggy\callers.py", line 187, in _multicall
+    res = hook_impl.function(*args)
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\_
+pytest\config\__init__.py", line 720, in pytest_cmdline_parse
+    self.parse(args)
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\_
+pytest\config\__init__.py", line 928, in parse
+    self._preparse(args, addopts=addopts)
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\_
+pytest\config\__init__.py", line 884, in _preparse
+    early_config=self, args=args, parser=self._parser
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\p
+luggy\hooks.py", line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\p
+luggy\manager.py", line 92, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\p
+luggy\manager.py", line 86, in <lambda>
+    firstresult=hook.spec.opts.get("firstresult") if hook.spec else False,
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\p
+luggy\callers.py", line 208, in _multicall
+    return outcome.get_result()
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\p
+luggy\callers.py", line 80, in get_result
+    raise ex[1].with_traceback(ex[2])
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\p
+luggy\callers.py", line 182, in _multicall
+    next(gen)  # first yield
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\_
+pytest\capture.py", line 42, in pytest_load_initial_conftests
+    _py36_windowsconsoleio_workaround(sys.stdout)
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\_
+pytest\capture.py", line 819, in _py36_windowsconsoleio_workaround
+    sys.stdin = _reopen_stdio(sys.stdin, "rb")
+  File "c:\users\lynakat\pycharmprojects\python_training\env\lib\site-packages\_
+pytest\capture.py", line 812, in _reopen_stdio
+    open(os.dup(f.fileno()), mode, buffering),
+OSError: [WinError 87] Параметр задан неверно
