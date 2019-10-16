@@ -1,3 +1,5 @@
+import allure
+
 from model.addContact import ContactAdd
 from selenium.webdriver.support.ui import Select
 import re
@@ -11,6 +13,7 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
 
+    @allure.step('create_contact')
     def create(self, contact):
         wd = self.app.wd
         self.open_created_contact()

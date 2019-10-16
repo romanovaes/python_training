@@ -1,6 +1,7 @@
 from builtins import int
 from sys import maxsize
 
+import allure
 
 
 class Group:
@@ -13,6 +14,7 @@ class Group:
     def __repr__(self):
         return '%s:%s:%s:%s' %(self.id, self.name, self.header, self.footer)
 
+    @allure.step('Comparison')
     def __eq__(self, other):
         return self.name==other.name and (self.id==other.id or self.id is None or other.id is None)
 

@@ -4,14 +4,14 @@ import pytest
 import random
 import string
 from builtins import *
+import allure
 
 
-#@pytest.mark.parametrize("contact", testdata, ids=[repr(x) for x in testdata])
+@allure.step('test_add_contact')
 def test_add_contact(app, db, json_contact, check_ui):
     contact=json_contact
     old_contact=db.get_contact_list()
     app.contact.create(contact)
-    #l=app.contact.count()
     new_contact=db.get_contact_list()
     old_contact.append(contact)
     assert sorted(old_contact, key=ContactAdd.id_or_max) == sorted(new_contact, key=ContactAdd.id_or_max)

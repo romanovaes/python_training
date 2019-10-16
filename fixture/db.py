@@ -1,6 +1,7 @@
 import pymysql.cursors
 from model.group import Group
 from model.addContact import ContactAdd
+import allure
 
 class DBFixture:
 
@@ -11,6 +12,7 @@ class DBFixture:
         self.password=password
         self.connection=pymysql.connect(host=host, db=name, user=user, password=password, autocommit=True)
 
+    @allure.step('db.get_group_list')
     def get_group_list(self):
         list=[]
         cursor=self.connection.cursor()
@@ -23,6 +25,7 @@ class DBFixture:
             cursor.close()
             return list
 
+    @allure.step('db.get_contact_list')
     def get_contact_list(self):
         list=[]
         cursor=self.connection.cursor()

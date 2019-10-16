@@ -1,5 +1,7 @@
 from sys import maxsize
 
+import allure
+
 
 class ContactAdd:
     def  __init__(self, firstname=None, middlename=None, lastname=None, nickname=None, title=None, company=None, address=None, home=None, mobile=None, work=None, fax=None, email=None, email2=None, email3=None, homepage=None, bday=None, bmonth=None, byear=None, aday=None, amonth=None, ayear=None, address2=None, phone2=None, notes=None, id=None, all_phones_from_home_page=None, all_email_from_home_page=None):
@@ -35,6 +37,7 @@ class ContactAdd:
     def __repr__(self):
         return '%s:%s:%s' % (self.firstname, self.lastname, self.id)
 
+    @allure.step('Comparison')
     def __eq__(self, other):
         return self.firstname==other.firstname and self.lastname==other.lastname and (self.id==other.id or self.id is None or other.id is None)
 
